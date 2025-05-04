@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  armor-crypto-mcp:
+    image: hashwarlock/armor-crypto-mcp:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+    restart: unless-stopped
