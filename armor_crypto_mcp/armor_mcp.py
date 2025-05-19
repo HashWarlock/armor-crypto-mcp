@@ -93,9 +93,9 @@ async def wait_a_moment(seconds:float):
 
 from datetime import datetime, timezone
 @mcp.tool()
-async def get_current_time():
+async def get_current_time() -> Dict:
     """Gets the current time and date"""
-    return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+    return {"current_time": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")}
 
 @mcp.tool()
 async def calculator(expression:str, variables:dict[str, Any]):
@@ -107,7 +107,7 @@ async def calculator(expression:str, variables:dict[str, Any]):
 
     Custom variables can be passed via the 'variables' dict, including lists for time series data.
     """
-    return calculate(expression, variables)
+    return {'result': calculate(expression, variables)}
 
 @mcp.tool()
 async def get_wallet_token_balance(wallet_token_pairs: WalletTokenPairsContainer) -> List[WalletTokenBalance]:
@@ -144,7 +144,7 @@ async def calculate_token_conversion(conversion_requests: ConversionRequestConta
 @mcp.tool()
 async def swap_quote(swap_quote_requests: SwapQuoteRequestContainer) -> List[SwapQuoteResponse]:
     """
-    Retrieve a swap quote.
+    Retrieve a swap quote. Be sure to add slippage!
     
     Expects a SwapQuoteRequestContainer, returns a list of SwapQuoteResponse.
     """
